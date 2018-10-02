@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="idolhome">
+	<select id="selectOneOfIdolMain" resultType="imdto" parameterType="String">
+		select * from idolmain where koreanname = #{koreanname}
+	</select>
+	
+	<select id="selectOneOfProfilePhotoURL" resultType="ppdto" parameterType="String">
+		select * from profilephotourl where koreanname = #{koreanname}
+	</select>
+	
+	<select id="selectOneOfIdolLink" resultType="ildto" parameterType="String">
+		select * from idollink where koreanname = #{koreanname}
+	</select>
+	
+	<select id="selectSomeOfIdolYouTube" resultType="iydto" parameterType="String">
+		select * from idolyoutube where koreanname = #{koreanname}
+	</select>
+	
+	
+</mapper>
