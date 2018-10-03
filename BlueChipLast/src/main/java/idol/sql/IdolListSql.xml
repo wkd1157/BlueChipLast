@@ -3,12 +3,24 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="idollist">
-	<select id="selectAllOfIdolMain" resultType="imdto">
-		select * from idolmain order by mainnum desc
+	<select id="selectAllOfIdolMain" parameterType="hashmap" resultType="imdto">
+		<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from
+		(select * from idolmain order by mainnum desc)b)a
+		where a.RNUM >=#{start} and a.RNUM <=#{end}
+		]]>
 	</select>
 	
-	<select id="selectAllOfProfilePhotoURL" resultType="ppdto">
-		select * from profilephotourl order by ppurlnum desc
+	<select id="selectAllOfProfilePhotoURL" parameterType="hashmap" resultType="ppdto">
+		<![CDATA[
+		select a.* from (select ROWNUM as RNUM, b.* from
+		(select * from profilephotourl order by ppurlnum desc)b)a
+		where a.RNUM >=#{start} and a.RNUM <=#{end}
+		]]>
+	</select>
+	
+	<select id="selectGetTotalCount" resultType="int">
+		select count(*) from idolmain
 	</select>
 	
 </mapper>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DaumNewsCrawling {
 	
 		private static String URL = "https://search.daum.net/search?w=news&nil_search=btn&DA=NTB&enc=utf8&cluster=y&cluster_page=1&q=";
-		
+			
 		public Vector<String> getNaverNews(@RequestParam String koreanname)
 		{
 			
@@ -46,7 +46,20 @@ public class DaumNewsCrawling {
 			for(Element e1:elements2)
 			{
 				
-					String title = e1.attr("href");
+				    String title = e1.attr("href");
+					
+					list.add(title);
+								
+					
+				
+			}
+			
+			Elements elements3 = doc.select("#clusterResultUL > li > div.wrap_cont > div > p");
+			
+			for(Element e1:elements3)
+			{
+				
+					String title = e1.text();
 					
 					list.add(title);
 				
@@ -57,6 +70,8 @@ public class DaumNewsCrawling {
 			return list;
 			
 		}
+		
+		
 		
 }
 

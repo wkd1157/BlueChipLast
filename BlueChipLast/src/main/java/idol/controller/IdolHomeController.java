@@ -42,7 +42,7 @@ public class IdolHomeController {
 		model.addObject("IYList",IYList);
 		model.addObject("ILDto",ILDto);
 		
-		model.setViewName("idolhome");
+		model.setViewName("/1/idolhome/idolhome");
 		return model;
 	}
 	
