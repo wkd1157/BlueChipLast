@@ -27,7 +27,7 @@ public class IdolListController {
 		//페이징에 처리에 필요한 변수들
 		int totalCount = IdolListDao.getTotalCount();//총 개시글의 개수
 		int perPage = 9; // 한페이지당 보여지는 글의 갯수
-		int perBlock = 5; // 한블럭당 보여지는 페이지번호의 수
+		// int perBlock = 5; // 한블럭당 보여지는 페이지번호의 수
 		int totalPage; // 총 페이지의 갯수
 		int startNum; // 한페이지당 보여지는 시작번호
 		int endNum; // 한페이지당 보여지는 끝번호
@@ -49,9 +49,10 @@ public class IdolListController {
 			endNum = totalCount;
 
 		// 각 블럭에 보여질 시작 페이지번호와 끝 페이지 번호 구하기
-		startPage = (pageNum - 1) / perBlock * perBlock + 1;
-		endPage = startPage + perBlock - 1;
-
+		startPage = pageNum;
+		endPage = pageNum;
+		
+			
 		// 예를 들어 총 34페이지일경우
 		// 마지막 블럭은 30-34 만 보여야함
 		if (endPage > totalPage)

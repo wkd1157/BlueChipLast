@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="idolsearch">
+	<select id="selectNameSearchIdolMain" parameterType="String" resultType="imdto">
+		select * from idolmain 
+		where koreanname like #{name} or upper(globalname) like upper(#{name}) 
+		order by mainnum desc
+	</select>
+	
+	<select id="selectNameSearchProfilePhotoURL" parameterType="String" resultType="ppdto">
+		select * from profilephotourl 
+		where koreanname in (select koreanname from idolmain where koreanname like #{name} or upper(globalname) like upper(#{name})) 
+		order by ppurlnum desc
+	</select>
+	
+	<select id="selectEntSearchIdolMain" parameterType="String" resultType="imdto">
+		select * from idolmain 
+		where upper(entertainment) like upper(#{name}) 
+		order by mainnum desc
+	</select>
+	
+	<select id="selectEntSearchProfilePhotoURL" parameterType="String" resultType="ppdto">
+		select * from profilephotourl 
+		where koreanname in (select koreanname from idolmain where upper(entertainment) like upper(#{name})) 
+		order by ppurlnum desc
+	</select>
+	
+	<select id="selectDebutYearSearchIdolMain" parameterType="String" resultType="imdto">
+		select * from idolmain 
+		where debutyear like #{name} 
+		order by mainnum desc
+	</select>
+	
+	<select id="selectDebutYearSearchProfilePhotoURL" parameterType="String" resultType="ppdto">
+		select * from profilephotourl 
+		where koreanname in (select koreanname from idolmain where debutyear like #{name}) 
+		order by ppurlnum desc
+	</select>
+		
+</mapper>

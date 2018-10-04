@@ -19,7 +19,7 @@
 	<!-- Section -->
 	<section>
 		<header class="major">
-			<h2>Idol-List</h2>
+			<h2>List-ALL &nbsp;&nbsp;(<b style="color: red;">${pageNum}</b> / ${totalPage})Page</h2> 
 		</header>
 
 		<div class="posts">
@@ -30,24 +30,23 @@
 						class="image"> <img style="height: 250px;"
 						src=<c:if test = "${PPList[a].ppurl==null}">"${root}/image/noimg.jpg"</c:if>"${PPList[a].ppurl}">
 					</a>
-					<h3>
-						<a href="idolHome.idol?koreanname=${PPList[a].koreanname}">${IMList[a].globalname}</a>
+					<h3 class="align-center">
+						<b>${(a+1)+(9*(pageNum-1))}</b>. ${IMList[a].globalname}
 					</h3>
-					<p>
-						<b>DebutYear</b> : ${IMList[a].debutyear}<br> <b>Korean
-							Name</b> : ${IMList[a].koreanname}<br> <b>ENT</b> :
+					<p class="align-center">
+						<b>Korean Name</b> : ${IMList[a].koreanname}<br>
+						<b>ENT</b> :
 						<c:if test="${IMList[a].entertainment == null}">
 							 No Data
 						</c:if>
-						${IMList[a].entertainment}
+						${IMList[a].entertainment}<br>
+						<b>DebutYear</b> : ${IMList[a].debutyear}
 					</p>
-					<ul class="actions">
-						<li><a href="#" class="button">More</a></li>
-					</ul>
+					<div class="align-center"><a href="idolHome.idol?koreanname=${PPList[a].koreanname}" class="button">More</a></div>			
 				</article>
 			</c:forEach>
 		</div>
-		
+		<br>
 		<ul class="pagination" style="width: 100%; text-align: center;">
 			<c:if test="${startPage == 1}">
 				<!-- 첫페이지가 1보다 크면 1페이지가 아니니까 이전버튼 활성화 -->
@@ -57,9 +56,10 @@
 			<c:if test="${startPage > 1}">
 				<!-- 첫페이지가 1보다 크면 1페이지가 아니니까 이전버튼 활성화 -->
 				<li><a href="idolList.idol?pageNum=${startPage-1}"
-					class="button"> Prev</a></li>
+					class="button">Prev</a></li>
 			</c:if>
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">		
+				<%-- <li><a href="idolList.idol?pageNum=${i}" class= <c:if test="${pageNum!=i}">"page"</c:if>"page active">${i}</a></li> --%>
 				<li><a href="idolList.idol?pageNum=${i}" class="page">${i}</a></li>
 			</c:forEach>
 			<c:if test="${endPage < totalPage}">

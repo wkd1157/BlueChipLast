@@ -11,7 +11,8 @@
 	
 	<mappers>
 		<mapper resource="idol/sql/IdolListSql.xml"/> 
-		<mapper resource="idol/sql/IdolHomeSql.xml"/> 
+		<mapper resource="idol/sql/IdolHomeSql.xml"/>
+		<mapper resource="idol/sql/IdolSearchSql.xml"/> 
 	</mappers>
 	
 	<!-- sql, dto 선언하는곳 -->

@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.jsf.el.WebApplicationContextFacesELResolver;
 
 @Component
 public class DaumNewsCrawling {
@@ -32,7 +33,6 @@ public class DaumNewsCrawling {
 			
 
 			Elements elements2 = doc.select("#clusterResultUL > li > div.wrap_cont > div > div > a");
-				
 			for(Element e1:elements2)
 			{
 				
@@ -47,7 +47,6 @@ public class DaumNewsCrawling {
 			{
 				
 				    String title = e1.attr("href");
-					
 					list.add(title);
 								
 					
@@ -65,6 +64,17 @@ public class DaumNewsCrawling {
 				
 				
 			}
+			
+			/*Elements elements4 = doc.select("#clusterResultUL > li > div.thumb > div > a > img");
+			
+			for(Element e1:elements4)
+			{
+				
+					String title = e1.attr("src");
+					
+					list.add(title);
+				
+			}*/
 			
 			System.out.println(list);
 			return list;

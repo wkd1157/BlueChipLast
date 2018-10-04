@@ -46,16 +46,16 @@
 					<b>BreakYear</b> : ${IMDto.breakyear}<br>
 				</c:if>
 			</p>
-			<ul class="actions">
+			<!-- <ul class="actions">
 				<li><a href="#" class="button big">Learn More</a></li>
-			</ul>
+			</ul> -->
 		</div>
 		<span class="image object"> <img src="${PPDto.ppurl}" alt="" />
 		</span>
 	</section>
 
 	<!-- Section 1 -->
-	<section>
+	<section id="youtube">
 		<header class="major">
 			<h2>YouTube Top 9</h2>
 		</header>
@@ -63,33 +63,31 @@
 			<c:forEach var="a" begin="0" end="8">
 
 				<article>
-
-					<iframe style="align-items: center;" width="350" height="250"
+				<div class="align-center">
+					<iframe width="350" height="250"
 						src="https://www.youtube.com/embed/${IYList[a].yturl.split('=')[1]}"
-						frameborder="0" allowfullscreen></iframe>
-					<br> <a href="${IYList[a].yturl}">${IYList[a].yttitle}</a>
-
-
-					<ul class="actions">
-						<li><a href="${IYList[a].yturl}" class="button">YouTube</a></li>
-					</ul>
+						frameborder="0" allowfullscreen></iframe></div>
+					<br>
+					<p><b>${IYList[a].yttitle}</b></p>
+					
+					<div class="align-center"> <a href="${IYList[a].yturl}" class="button">YouTube</a></div>
 				</article>
 			</c:forEach>
 		</div>
 	</section>
 	
 	<!-- Section 2 -->
-	<section>
+	<section id="news">
 		<header class="major">
 			<h2>RealTime Daum News 9</h2>
 		</header>
-		<div class="posts">
+		<%-- <div class="posts">
 			<c:forEach var="a" begin="0" end="8" varStatus="i">
 				<c:set var="title" value="${list[a]}" />
 
 				<article>
-					<%-- <a class="image"><img style="height: 250px;"
-									src="${list[20+a]}"></a> --%>
+					<a class="image"><img style="height: 250px;"
+									src="${list[20+a]}"></a>
 
 					<p>
 						<b>${title}<br></b> ${list[20+a]}
@@ -100,7 +98,20 @@
 					</ul>
 				</article>
 			</c:forEach>
+		</div> --%>
+		<div class="row">
+			<c:forEach var="a" begin="0" end="8" varStatus="i">
+			<c:set var="title" value="${list[a]}" />
+			<div class="col-4 col-12-medium">
+				<div><b>${title}</b><br><br></div>
+				<blockquote>${list[20+a]} <div class="align-right"><a href="${list[10+a]}" class="button small">More</a></div></blockquote>
+				
+					
+				
+			</div>
+			</c:forEach>
 		</div>
+		
 	</section>
 
 </body>
