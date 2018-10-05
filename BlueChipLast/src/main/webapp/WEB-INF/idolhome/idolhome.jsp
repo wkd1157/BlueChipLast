@@ -101,18 +101,39 @@
 		</div> --%>
 		<div class="row">
 			<c:forEach var="a" begin="0" end="8" varStatus="i">
-			<c:set var="title" value="${list[a]}" />
+			<c:set var="title" value="${getDaumNews[a]}" />
 			<div class="col-4 col-12-medium">
 				<div><b>${title}</b><br><br></div>
-				<blockquote>${list[20+a]} <div class="align-right"><a href="${list[10+a]}" class="button small">More</a></div></blockquote>
-				
-					
+				<blockquote>${getDaumNews[20+a]} <div class="align-right"><a href="${getDaumNews[10+a]}" class="button small">More</a></div></blockquote>		
 				
 			</div>
 			</c:forEach>
 		</div>
 		
 	</section>
+
+	<section id="photo">
+		<header class="major">
+			<h2>Insta Photo</h2>
+		</header>
+		<div class="posts">
+			<c:forEach var="str" items="${getInstaPhoto}" varStatus="i">
+				<article>
+					<c:forTokens var="data" items="${str}" delims="|" varStatus="n">
+						<c:if test="${n.count==1}">
+							<a href="${data}" class="image"> <img src="${data}"
+								style="height: 250px;">
+							</a>
+						</c:if>
+						<c:if test="${n.count==2}">
+							<p>${data}</p>
+						</c:if>
+					</c:forTokens>
+				</article>
+			</c:forEach>
+		</div>
+	</section>
+
 
 </body>
 </html>

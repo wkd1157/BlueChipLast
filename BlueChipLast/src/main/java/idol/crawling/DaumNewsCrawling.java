@@ -16,10 +16,10 @@ public class DaumNewsCrawling {
 	
 		private static String URL = "https://search.daum.net/search?w=news&nil_search=btn&DA=NTB&enc=utf8&cluster=y&cluster_page=1&q=";
 			
-		public Vector<String> getNaverNews(@RequestParam String koreanname)
+		public Vector<String> getDaumNews(@RequestParam String koreanname)
 		{
 			
-			Vector<String> list=new Vector<String>();
+			Vector<String> getDaumNews=new Vector<String>();
 			
 			
 			
@@ -38,7 +38,7 @@ public class DaumNewsCrawling {
 				
 					String title = e1.text();
 					
-					list.add(title);
+					getDaumNews.add(title);
 				
 				
 			}
@@ -47,7 +47,7 @@ public class DaumNewsCrawling {
 			{
 				
 				    String title = e1.attr("href");
-					list.add(title);
+				    getDaumNews.add(title);
 								
 					
 				
@@ -60,7 +60,7 @@ public class DaumNewsCrawling {
 				
 					String title = e1.text();
 					
-					list.add(title);
+					getDaumNews.add(title);
 				
 				
 			}
@@ -76,8 +76,7 @@ public class DaumNewsCrawling {
 				
 			}*/
 			
-			System.out.println(list);
-			return list;
+			return getDaumNews;
 			
 		}
 		

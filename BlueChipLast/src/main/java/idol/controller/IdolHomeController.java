@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import idol.crawling.DaumNewsCrawling;
+import idol.crawling.InstaPhotoCrawling;
 import idol.dao.IdolHomeDao;
 import idol.dto.IdolLinkDto;
 import idol.dto.IdolMainDto;
@@ -24,6 +25,9 @@ public class IdolHomeController {
 	
 	@Autowired
 	DaumNewsCrawling news;
+	
+	@Autowired
+	InstaPhotoCrawling insta;
 
 	@RequestMapping("/idolHome.idol")
 	public ModelAndView IdolHome(@RequestParam String koreanname)
@@ -34,9 +38,11 @@ public class IdolHomeController {
 		List<IdolYouTubeDto> IYList = IdolHomeDao.getIYList(koreanname);
 		IdolLinkDto ILDto = IdolHomeDao.getILDto(koreanname);
 		
-		Vector<String> list=news.getNaverNews(koreanname);
+		Vector<String> getDaumNews = news.getDaumNews(koreanname);
+		Vector<String> getInstaPhoto = insta.getInstaPhoto(koreanname);
 		
-		model.addObject("list",list);
+		model.addObject("getDaumNews",getDaumNews);
+		model.addObject("getInstaPhoto",getInstaPhoto);
 		model.addObject("IMDto",IMDto);
 		model.addObject("PPDto",PPDto);
 		model.addObject("IYList",IYList);
