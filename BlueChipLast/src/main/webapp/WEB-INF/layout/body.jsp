@@ -6,147 +6,146 @@
 <html>
 
 <head>
-<title>Idol-Group-Ranking</title>
+<title>Today's Idol</title>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <c:set var="root" value="<%=request.getContextPath()%>" />
+<script type="text/javascript">
+	window.onload = function() {
+		var wordcloudbtn = document.getElementById("wordcloudbtn");
+		var cloudfilename = "${IMDto.koreanname}".replace(" ","");
+		wordcloudbtn.onclick = function() {
+			window.open("wordcloud/"+cloudfilename+".html", "w",
+					"left=300px,top=200px,width=1000px,height=550px");
+		}
+	}
+</script>
 </head>
+
 <body>
+
+	<!-- Banner -->
 	<section id="banner">
 		<div class="content">
 			<header>
-				<h1>
-					Hi, I’m Editorial<br /> by HTML5 UP
-				</h1>
-				<p>A free and fully responsive site template</p>
+				<h2>오늘의 아이돌</h2>
+				<h1>${IMDto.globalname}</h1>
+				<p>Profile</p>
 			</header>
-			<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu.
-				Proin aliquam facilisis ante interdum congue. Integer mollis, nisl
-				amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut
-				magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas.
-				Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+			<p>
+				<c:if test="${IMDto.koreanname != null}">
+					<b>KoreanName</b> : ${IMDto.koreanname}<br>
+				</c:if>
+				<c:if test="${IMDto.debutalbum != null}">
+					<b>DebutAlbum</b> : ${IMDto.debutalbum}<br>
+				</c:if>
+				<c:if test="${IMDto.members != null}">
+					<b>Member</b> : ${IMDto.members}<br>
+				</c:if>
+				<c:if test="${IMDto.leader != null}">
+					<b>Leader</b> : ${IMDto.leader}<br>
+				</c:if>
+				<c:if test="${IMDto.entertainment != null}">
+					<b>Entertainment</b> : ${IMDto.entertainment}<br>
+				</c:if>
+				<c:if test="${IMDto.mainprize != null}">
+					<b>MainPrize</b> : ${IMDto.mainprize}<br>
+				</c:if>
+				<c:if test="${IMDto.breakyear != null}">
+					<b>BreakYear</b> : ${IMDto.breakyear}<br>
+				</c:if>
+			</p>
+			
 			<ul class="actions">
-				<li><a href="#" class="button big">Learn More</a></li>
+				<li><input type="button" id="wordcloudbtn" class="button big" value="WordCloud"></li>
 			</ul>
+			
 		</div>
-		<span class="image object"> <img src="images/pic10.jpg" alt="" />
+		<span class="image object"> <img src="${PPDto.ppurl}" alt="" />
 		</span>
 	</section>
 
-	<!-- Section -->
-	<section>
+	<!-- Section 1 -->
+	<section id="youtube">
 		<header class="major">
-			<h2>Erat lacinia</h2>
+			<h2>YouTube Top 9</h2>
 		</header>
-		<div class="features">
-			<article>
-				<span class="icon fa-diamond"></span>
-				<div class="content">
-					<h3>Portitor ullamcorper</h3>
-					<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-						dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-						lorem feugiat tempus aliquam.</p>
-				</div>
-			</article>
-			<article>
-				<span class="icon fa-paper-plane"></span>
-				<div class="content">
-					<h3>Sapien veroeros</h3>
-					<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-						dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-						lorem feugiat tempus aliquam.</p>
-				</div>
-			</article>
-			<article>
-				<span class="icon fa-rocket"></span>
-				<div class="content">
-					<h3>Quam lorem ipsum</h3>
-					<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-						dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-						lorem feugiat tempus aliquam.</p>
-				</div>
-			</article>
-			<article>
-				<span class="icon fa-signal"></span>
-				<div class="content">
-					<h3>Sed magna finibus</h3>
-					<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-						dolore. Proin aliquam facilisis ante interdum. Sed nulla amet
-						lorem feugiat tempus aliquam.</p>
-				</div>
-			</article>
+		<div class="posts">
+			<c:forEach var="a" begin="0" end="8">
+
+				<article>
+				<div class="align-center">
+					<iframe width="350" height="250"
+						src="https://www.youtube.com/embed/${IYList[a].yturl.split('=')[1]}"
+						frameborder="0" allowfullscreen></iframe></div>
+					<br>
+					<p><b>${IYList[a].yttitle}</b></p>
+					
+					<div class="align-center"> <a href="${IYList[a].yturl}" class="button">YouTube</a></div>
+				</article>
+			</c:forEach>
+		</div>
+	</section>
+	
+	<!-- Section 2 -->
+	<section id="news">
+		<header class="major">
+			<h2>RealTime Daum News 9</h2>
+		</header>
+		<%-- <div class="posts">
+			<c:forEach var="a" begin="0" end="8" varStatus="i">
+				<c:set var="title" value="${list[a]}" />
+
+				<article>
+					<a class="image"><img style="height: 250px;"
+									src="${list[20+a]}"></a>
+
+					<p>
+						<b>${title}<br></b> ${list[20+a]}
+					</p>
+
+					<ul class="actions">
+						<li><a href="${list[10+a]}" class="button">More</a></li>
+					</ul>
+				</article>
+			</c:forEach>
+		</div> --%>
+		<div class="row">
+			<c:forEach var="a" begin="0" end="8" varStatus="i">
+			<c:set var="title" value="${getDaumNews[a]}" />
+			<div class="col-4 col-12-medium">
+				<div><b>${title}</b><br><br></div>
+				<blockquote>${getDaumNews[20+a]} <div class="align-right"><a href="${getDaumNews[10+a]}" class="button small">More</a></div></blockquote>		
+				
+			</div>
+			</c:forEach>
+		</div>
+		
+	</section>
+
+	<section id="photo">
+		<header class="major">
+			<h2>Insta Photo</h2>
+		</header>
+		<div class="posts">
+			<c:forEach var="str" items="${getInstaPhoto}" varStatus="i">
+				<article>
+					<c:forTokens var="data" items="${str}" delims="|" varStatus="n">
+						<c:if test="${n.count==1}">
+							<a href="${data}" class="image"> <img src="${data}"
+								style="height: 250px;">
+							</a>
+						</c:if>
+						<c:if test="${n.count==2}">
+							<p>${data}</p>
+						</c:if>
+					</c:forTokens>
+				</article>
+			</c:forEach>
 		</div>
 	</section>
 
-	<!-- Section -->
-	<section>
-		<header class="major">
-			<h2>Ipsum sed dolor</h2>
-		</header>
-		<div class="posts">
-			<article>
-				<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-				<h3>Interdum aenean</h3>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem
-					feugiat tempus aliquam.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">More</a></li>
-				</ul>
-			</article>
-			<article>
-				<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-				<h3>Nulla amet dolore</h3>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem
-					feugiat tempus aliquam.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">More</a></li>
-				</ul>
-			</article>
-			<article>
-				<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
-				<h3>Tempus ullamcorper</h3>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem
-					feugiat tempus aliquam.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">More</a></li>
-				</ul>
-			</article>
-			<article>
-				<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
-				<h3>Sed etiam facilis</h3>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem
-					feugiat tempus aliquam.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">More</a></li>
-				</ul>
-			</article>
-			<article>
-				<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-				<h3>Feugiat lorem aenean</h3>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem
-					feugiat tempus aliquam.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">More</a></li>
-				</ul>
-			</article>
-			<article>
-				<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-				<h3>Amet varius aliquam</h3>
-				<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-					dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem
-					feugiat tempus aliquam.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">More</a></li>
-				</ul>
-			</article>
-		</div>
-	</section>
+
 </body>
 </html>

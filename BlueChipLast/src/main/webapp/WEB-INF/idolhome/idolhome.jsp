@@ -12,6 +12,16 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <c:set var="root" value="<%=request.getContextPath()%>" />
+<script type="text/javascript">
+	window.onload = function() {
+		var wordcloudbtn = document.getElementById("wordcloudbtn");
+		var cloudfilename = "${IMDto.koreanname}".replace(" ","");
+		wordcloudbtn.onclick = function() {
+			window.open("wordcloud/"+cloudfilename+".html", "w",
+					"left=300px,top=200px,width=1000px,height=550px");
+		}
+	}
+</script>
 </head>
 
 <body>
@@ -46,9 +56,11 @@
 					<b>BreakYear</b> : ${IMDto.breakyear}<br>
 				</c:if>
 			</p>
-			<!-- <ul class="actions">
-				<li><a href="#" class="button big">Learn More</a></li>
-			</ul> -->
+			
+			<ul class="actions">
+				<li><input type="button" id="wordcloudbtn" class="button big" value="WordCloud"></li>
+			</ul>
+			
 		</div>
 		<span class="image object"> <img src="${PPDto.ppurl}" alt="" />
 		</span>
