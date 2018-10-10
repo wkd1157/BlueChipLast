@@ -129,7 +129,7 @@ public class InstaPhotoCrawling {
 	public void IdolWordCloud(String search, String imgComments)
 	{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		String realPath = request.getSession().getServletContext().getContext("/").getRealPath("");
+		String realPath = request.getSession().getServletContext().getContext("/BlueChipLast").getRealPath("");
 		String RootPath = realPath.replace("\\","/");
 		String saveFullPath = RootPath+"wordcloud/";
 		imgComments = imgComments.replace("'","");
