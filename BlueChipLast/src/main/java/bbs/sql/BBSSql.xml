@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bbs">
+	<insert id="insertbbs" parameterType="bdto">
+	insert into bbs values (seq1.nextval,#{writer},#{subject},
+	#{content},#{pass},0,sysdate)
+	</insert>
+	
+	<select id="selectpagingofbbs" parameterType="HashMap" resultType="bdto">
+	<![CDATA[
+		select a.* from (select ROWNUM as RNUM,b.* from 
+		(select * from bbs order by num desc)b)a 
+		where a.RNUM>=#{start} and a.RNUM<=#{end}
+	]]>
+	</select>
+	
+	<select id="totalcountofbbs" resultType="int">
+	select count(*) from bbs
+	</select>
+	
+	<update id="updateByNumofbbs" parameterType="int">
+	update bbs set readcount=readcount+1 where num=#{num}
+	</update>
+	
+	<select id="selectOneofbbs" parameterType="int" resultType="bdto">
+		select * from bbs where num=#{num}
+	</select>
+	
+	<insert id="insertanswer" parameterType="adto">
+	insert into answer values (seq1.nextval,#{num},#{nickname},#{content},sysdate)
+	</insert>
+	
+	<select id="answerlistByNum" parameterType="int" resultType="adto">
+	select * from answer where num=#{num} order by idx desc
+	</select>
+	
+</mapper>
