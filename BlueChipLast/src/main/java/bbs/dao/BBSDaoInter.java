@@ -15,7 +15,8 @@ public interface BBSDaoInter {
 	public void updateChu(int num);
 	
 	//댓글에 대한 메소드 추가
-	public void insertAnswer(AnswerDto adto);
-	public List<AnswerDto> getAnswer(int num);
+	/*public void insertAnswer(AnswerDto adto);
+	public List<AnswerDto> getAnswer(int num);*/
+	public void updatebbs(BBSDto dto);
 
 }

@@ -32,12 +32,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from bbs where num=#{num}
 	</select>
 	
-	<insert id="insertanswer" parameterType="adto">
+	<!-- <insert id="insertanswer" parameterType="adto">
 	insert into answer values (seq1.nextval,#{num},#{nickname},#{content},sysdate)
 	</insert>
 	
 	<select id="answerlistByNum" parameterType="int" resultType="adto">
 	select * from answer where num=#{num} order by idx desc
+	</select> -->
+	
+	<select id="updateNum" parameterType="int" resultType="bdto">
+	select * from bbs where num=#{num}
 	</select>
 	
+	<update id="updatebbs" parameterType="bdto">
+	update bbs set subject=#{subject}, content=#{content} where num=#{num}
+	</update>
 </mapper>

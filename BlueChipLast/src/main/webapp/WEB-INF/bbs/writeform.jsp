@@ -24,21 +24,26 @@
 			$("#writer").val(id);
 			
 		});
+		
 		function goBack(){
-			//window.history.back();
+			window.history.back();
 		}
+ 
 
+			
+			
 </script>
 	<form action="write.idol" method="post" >
 		<table class="table table-striped" style="width:99%; height:500px; margin:0 auto;">
 			<tr>
 				<th style="height:10%">작성자</th>
 				<td colspan="3">
-					<!-- <span id="myid"> -->
-					<input type="text" name="writer" id="writer" value="test">
+					<!-- <span id="myid">  -->
+					<input type="text" name="writer" id="writer" readonly>
 					</span>
 				</td>
 			</tr>
+			<form id="test">
 			<tr >
 				<th style="height:10%">제목</th>
 				<td colspan="3">
@@ -60,13 +65,14 @@
 					<input type="submit" value="게시글 저장" class="form-control">
 				</td>
 				<td>
-					<input type="reset" value="글쓰기취소">
+					<input type="reset" value="글쓰기취소" onclick="location.reload()">
 					</td>
 				<td>
 	      			<input type="button" value="목록" onclick="goBack();">
 				</td>
 				
 			</tr>
+			</form>
 		</table>
 		</form>
 	</body>

@@ -38,7 +38,7 @@
 			<tr height="300" valign="top">
 				<td style="text-align:left;">
 					<pre>${dto.content}</pre>
-					<br>
+					<%-- <br>
 					<b style="cursor:pointer;" id="acount">댓글 ${acount}</b><br>
 					<answer style="padding-left:20px;">
 						<c:forEach var="a" items="${alist}">
@@ -47,11 +47,11 @@
 								<fmt:formatDate value="${a.writeday}" pattern="yyyy-MM-dd HH:mm"/><br>
 							</span>
 						</c:forEach>
-					</answer>
+					</answer> --%>
 				</td>
 			</tr>
 			
-			<!-- 댓글 폼  -->
+			<%-- <!-- 댓글 폼  -->
 			<tr>
 				<td align="left">
 					<form action="answer.idol" method="post" class="form-inline">
@@ -66,14 +66,14 @@
 						</div>
 					</form>
 				</td>
-			</tr>
+			</tr> --%>
 			<tr>
 				<td align="right">
 					<input type="button" class="btn btn-sm btn-success" value="수정" 
 					onclick="location.href='updateform.idol?num=${dto.num}&pageNum=${pageNum}'">
 					
 					<input type="button" class="btn btn-sm btn-warning" value="삭제" 
-					onclick="location.href='delete.idol?writer=${dto.writer}&pageNum=${pageNum}'">
+					onclick="location.href='delete.idol?num=${dto.num}&pageNum=${pageNum}'">
 					
 					<input type="button" class="btn btn-sm btn-danger" value="목록" 
 					onclick="location.href='bbslist.idol?pageNum=${pageNum}'"> 

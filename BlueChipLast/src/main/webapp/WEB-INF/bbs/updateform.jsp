@@ -18,17 +18,17 @@ function goBack(){
 }
 </script>
 <div class="container">
-	<form action="${root}/list/update.idol" method="post">
-		<input type="hidden" name="articleNum" value="${dto.articleNum}">
-	<%-- 	<input type="hidden" name="pageNum" value="${pageNum}"> --%>
-		<table class="table table-bordered" style="margin:0 auto;font-size: 10pt;">
+	<form action="update.idol" method="post">
+		<input type="hidden" name="num" value="${dto.num}">
+	<input type="hidden" name="pageNum" value="${pageNum}"> 
+		<table class="table table-bordered" style="margin:0 auto;font-size: 10pt; width:90%">
 			<tr>
-				<td width="30%">글쓴이 :</td>
-				<td width="70%">${id}</td>
+				<td align="center" width="10%">글쓴이 :</td>
+				<td width="90%">${dto.writer}</td>
 			</tr>
 			<tr>
-				<td>제목 :</td>
-				<td><input type="text" name="title" value="${dto.title}"></td>
+				<td align="center" width="10%">제목 :</td>
+				<td><input type="text" name="subject" value="${dto.subject}"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><textarea cols="50" rows="20" name="content" style="width: 100%;">${dto.content}</textarea>

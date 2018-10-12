@@ -65,14 +65,14 @@ public class BBSController {
 		
 		  //해당페이지에 보여줄 게시판 목록
 		  List<BBSDto> list=dao.getList(startNum, endNum);
-		  for(BBSDto dto:list)
+		  /*for(BBSDto dto:list)
 		  {
 			  int num=dto.getNum();
 			  String subject=dto.getSubject();
 			  int n=dao.getAnswer(num).size();
 			  subject+=":"+n;
 			  dto.setSubject(subject);
-		  }
+		  }*/
 		  
 		  //request에 담을 값들
 		  model.addObject("list",list);
