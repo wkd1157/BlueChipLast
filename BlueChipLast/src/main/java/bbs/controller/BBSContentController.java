@@ -51,11 +51,11 @@ public class BBSContentController {
 		return "redirect:content.do?num="+adto.getNum()+"&pageNum="+pageNum;		
 	}
 	
-//	@RequestMapping("delete.idol")
-//	public String delete(@ModelAttribute BBSDto dto)
-//	{
-//		dao.deletebbs(dto);
-//		return "redirect:bbslist.idol";
-//	}
+	@RequestMapping("delete.idol")
+	public String delete(@ModelAttribute BBSDto dto)
+	{
+		dao.deletebbs(dto);
+		return "redirect:bbslist.idol";
+	}
 	
 }

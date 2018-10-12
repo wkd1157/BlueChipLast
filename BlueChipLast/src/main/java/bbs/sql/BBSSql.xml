@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbs">
 	<insert id="insertbbs" parameterType="bdto">
-	insert into bbs values (seq1.nextval,#{writer},#{subject},
-	#{content},#{pass},0,sysdate)
+	insert into bbs values (bbs_seq.nextval,#{writer},#{subject},
+	#{content},0,sysdate)
 	</insert>
 	
 	<select id="selectpagingofbbs" parameterType="HashMap" resultType="bdto">
@@ -23,6 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateByNumofbbs" parameterType="int">
 	update bbs set readcount=readcount+1 where num=#{num}
 	</update>
+	
+	<delete id="bbsdelete" parameterType="bdto">
+		delete from bbs where num=#{num}
+	</delete>
 	
 	<select id="selectOneofbbs" parameterType="int" resultType="bdto">
 		select * from bbs where num=#{num}

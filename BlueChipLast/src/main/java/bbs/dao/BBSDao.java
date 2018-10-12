@@ -50,5 +50,10 @@ public class BBSDao extends SqlSessionDaoSupport implements BBSDaoInter{
 		
 
 	}
+
+	public void deletebbs(BBSDto dto) {
+		getSqlSession().delete("bbsdelete",dto);
+		
+	}
 	
 }

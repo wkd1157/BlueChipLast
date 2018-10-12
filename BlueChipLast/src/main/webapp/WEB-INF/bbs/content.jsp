@@ -10,9 +10,19 @@
 	<head>
 		<meta charset="utf-8">
 		<title>내용</title>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	</head> 
 	<body>
-		<table class="table table-bordered" style="width:500px; margin:0 auto;">
+		<script type="text/javascript">
+		$(function(){
+			id=localStorage.getItem("key1");
+			id=id.replace("님 환영합니다","");
+			/* alert(id); */
+			$("#myid").text(id);
+			
+		});
+</script>
+		<table class="table table-bordered" style="width:80%; margin:0 auto;">
 			<caption><b>게시글 확인</b></caption>
 			<tr>
 				<td>
@@ -46,7 +56,7 @@
 				<td align="left">
 					<form action="answer.idol" method="post" class="form-inline">
 						<div class="form-group">
-						<input type="text" name="nickname" style="width:70px;" placeholder="닉네임">
+						<span id="myid"></span>
 						<input type="text" name="content" style="width:320pl;" placeholder="댓글쓰기">
 						
 						<input type="hidden" name="num" value="${dto.num}">
@@ -59,17 +69,14 @@
 			</tr>
 			<tr>
 				<td align="right">
-					<input type="button" class="btn btn-sm btn-info" value="글쓰기" 
-					onclick="location.href='writeform.idol'">
-					
 					<input type="button" class="btn btn-sm btn-success" value="수정" 
 					onclick="location.href='updateform.idol?num=${dto.num}&pageNum=${pageNum}'">
 					
 					<input type="button" class="btn btn-sm btn-warning" value="삭제" 
-					onclick="location.href='deleteform.idol?num=${dto.num}&pageNum=${pageNum}'">
+					onclick="location.href='delete.idol?writer=${dto.writer}&pageNum=${pageNum}'">
 					
 					<input type="button" class="btn btn-sm btn-danger" value="목록" 
-					onclick="location.href='list.idol?pageNum=${pageNum}'"> 
+					onclick="location.href='bbslist.idol?pageNum=${pageNum}'"> 
 				</td>
 			</tr>
 		</table>

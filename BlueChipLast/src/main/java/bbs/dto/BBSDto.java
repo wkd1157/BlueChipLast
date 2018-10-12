@@ -8,7 +8,7 @@ public class BBSDto {
 	private String  writer; //글쓴이
 	private String subject; //제목
 	private String content; //내용
-	private String pass; //비밀번호
+	
 	private int readcount; //조회수
 	private Timestamp writeday; //날짜
 	
@@ -36,12 +36,6 @@ public class BBSDto {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
 	}
 	public int getReadcount() {
 		return readcount;

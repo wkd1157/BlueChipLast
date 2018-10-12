@@ -7,12 +7,15 @@
 		<typeAlias type="idol.dto.ProfilePhotoURLDto" alias="ppdto"/>
 		<typeAlias type="idol.dto.IdolLinkDto" alias="ildto"/>
 		<typeAlias type="idol.dto.IdolYouTubeDto" alias="iydto"/>
+		<typeAlias type="bbs.dto.BBSDto" alias="bdto"/>
+		<typeAlias type="bbs.dto.AnswerDto" alias="adto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="idol/sql/IdolListSql.xml"/> 
 		<mapper resource="idol/sql/IdolHomeSql.xml"/>
 		<mapper resource="idol/sql/IdolSearchSql.xml"/> 
+		<mapper resource="bbs/sql/BBSSql.xml"/> 
 	</mappers>
 	
 	<!-- sql, dto 선언하는곳 -->

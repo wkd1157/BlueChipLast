@@ -25,7 +25,7 @@
  
 <div id="kakao_btn_changed">
 <a href="javascript:loginWithKakao()">
-<img src="${root}/image/klogin.PNG" width="200px"></a>
+<img src="${root}/image/kakaologin.png" width="200px"></a>
 </div>
  
  
@@ -126,7 +126,7 @@ if(cookiedata.indexOf('kakao_login=done') < 0){
 		     // 로그인 버튼생성
 		        function createLoginKakao(){
 		         var login_btn = "<a href='javascript:loginWithKakao()'>"+
-		                        "<img src='../image/klogin.PNG' width='200'/></a>";
+		                        "<img src='../image/kakaologin.png' width='200'/></a>";
 		         document.getElementById('kakao_btn_changed').innerHTML  = login_btn;
 		        }
 		         
@@ -134,7 +134,7 @@ if(cookiedata.indexOf('kakao_login=done') < 0){
 		        // 로그아웃 버튼생성
 		        function createLogoutKakao(){
 		         var logout_btn = "<a id='custom-logout-btn' href='javascript:logoutWithKakao()'>"+
-		                        "<img src='../image/klogout.PNG' width='200'/></a>";
+		                        "<img src='../image/kakaologout.png' width='200'/></a>";
 		         document.getElementById('kakao_btn_changed').innerHTML  = logout_btn;
 		         
 		        }

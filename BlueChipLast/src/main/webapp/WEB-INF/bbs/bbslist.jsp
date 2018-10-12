@@ -7,22 +7,37 @@
 
 <head>
 <title>게시판</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <c:set var="root" value="<%=request.getContextPath()%>" />
+<script type="text/javascript">
+$(function(){
+	$("#email123").click(function(){
+		kakaologin=localStorage.key1;
+		//alert(kakaologin)
+		if(kakaologin==null || kakaologin.length==0||kakaologin=='undefined'){
+			alert("로그인을 먼저 해주세요")
+			return false;
+		}
+		location.href='writeform.idol';
+		return true;
+	});
+});
+</script>
 </head>
 
 	<body>
-	<table style="width:700px; margin:0 auto;" class="table table-hover">
+	<table style="width:95%; margin:0 auto;" class="table table-hover">
 		<thead>
 			<tr>
-				<th style="width: 60px;">번호</th>
-				<th style="width: 250px; text-align:center;">제목</th>
-				<th style="width: 80px;">작성자</th>
-				<th style="width: 70px;">조회수</th>
-				<th style="width: 100px;">작성일</th>
+				<th style="width: 10%;">번호</th>
+				<th style="width: 40%; text-align:center;">제목</th>
+				<th style="width: 15%;">작성자</th>
+				<th style="width: 10%;">조회수</th>
+				<th style="width: 25%;">작성일</th>
 			</tr>
 		</thead>
 		<tbody><!--여러번 선언 가능 -->
@@ -48,13 +63,15 @@
 			</tr>
 		</c:forEach>
 		</tbody>
+		<tr><td align="right" colspan="5" style="background:white">	
+		<input type="button" id="email123" value="글쓰기">		
+		
+				</td></tr>
 		</table>
-		<input type="button" value="글쓰기" class="btn btn-sm btn-info"
-		  style="margin-left: 550px;"
-		  onclick="location.href='writeform.idol'">
+		
 		  
 		  <!-- 페이징 처리 -->
-		  <table style="margin:0 auto;">
+		  <table style="width:95%; margin:0 auto;">
 		  <tr>
 		  	<td align="center">
 		  		<ul class="pagination">

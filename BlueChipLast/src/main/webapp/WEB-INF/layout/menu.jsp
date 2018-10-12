@@ -89,7 +89,9 @@
 						<li><a href="#youtube">Go~YouTube!</a></li>
 						<li><a href="#news">Go~News!</a></li>
 						<li><a href="#photo">Go~Photo!</a></li>
+						
 					</ul></li>
+				<li><a href="bbslist.idol">자유 게시판</a></li> 
 			</ul>
 		</nav>
 
