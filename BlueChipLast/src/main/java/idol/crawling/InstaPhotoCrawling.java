@@ -31,9 +31,9 @@ public class InstaPhotoCrawling {
 	{	
 		Vector<String> getInstaPhoto=new Vector();
 		
-		String exeURL = InstaPhotoCrawling.class.getClassLoader().getResource("chromedriver.exe").getPath();
-		System.setProperty("webdriver.chrome.driver", exeURL);
-		// System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+		// String exeURL = InstaPhotoCrawling.class.getClassLoader().getResource("chromedriver.exe").getPath();
+		// System.setProperty("webdriver.chrome.driver", exeURL);
+		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 			
 		koreanname = koreanname.replaceAll(" ", "");
 		
@@ -49,12 +49,10 @@ public class InstaPhotoCrawling {
 					koreanname2 += koreanname.substring(i,i+1);
 										
 			}
-		System.out.println("koreanname2: "+koreanname2);
+		// System.out.println("koreanname2: "+koreanname2);
 			
 		url="https://www.instagram.com/explore/tags/"+koreanname2+"/";
 		
-		// 드라이버 실행
-			
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-sandbox"); // Bypass OS security model
         options.addArguments("headless");
@@ -63,13 +61,15 @@ public class InstaPhotoCrawling {
         options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
         options.addArguments("lang=ko_KR");
         
+        // 드라이버 실행
         WebDriver driver = new ChromeDriver(options);
 		
 		driver.get(url);
 		
 		try {
+			// System.out.println("-- 0.5초 시간 주기 --");
 			Thread.sleep(500);
-			System.out.println("-- 0.5초 시간 주기 --");
+			
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -134,8 +134,8 @@ public class InstaPhotoCrawling {
 	{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		
-		String realPath = request.getSession().getServletContext().getContext("/BlueChipLast").getRealPath("");
-		// String realPath = request.getSession().getServletContext().getContext("/").getRealPath("");
+		// String realPath = request.getSession().getServletContext().getContext("/BlueChipLast").getRealPath("");
+		String realPath = request.getSession().getServletContext().getContext("/").getRealPath("");
 		
 		String RootPath = realPath.replace("\\","/");
 		String saveFullPath = RootPath+"wordcloud/";
@@ -144,8 +144,8 @@ public class InstaPhotoCrawling {
 		imgComments = imgComments.trim();
 		if (imgComments == "" )
 			imgComments = "데이터가수집되지않았습니다";
-		System.out.println("imgComments: "+ imgComments);
-		System.out.println("saveFullPath: "+saveFullPath);
+		// System.out.println("imgComments: "+ imgComments);
+		// System.out.println("saveFullPath: "+saveFullPath);
 		
 		RConnection connection = null;
 		try {
