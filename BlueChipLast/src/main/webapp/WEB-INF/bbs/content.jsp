@@ -15,6 +15,34 @@
 	<body>
 		<script type="text/javascript">
 		$(function(){
+			$("#email111").click(function(){
+				kakaologin=localStorage.key1;
+				//alert(kakaologin)
+				if(kakaologin==null || kakaologin.length==0||kakaologin=='undefined'){
+					alert("로그인을 먼저 해주세요")
+					
+					return false;
+				}
+				location.href='updateform.idol?num=${dto.num}&pageNum=${pageNum}'
+				return true;
+			});
+		});
+		
+		$(function(){
+			$("#email112").click(function(){
+				kakaologin=localStorage.key1;
+				//alert(kakaologin)
+				if(kakaologin==null || kakaologin.length==0||kakaologin=='undefined'){
+					alert("로그인을 먼저 해주세요")
+					
+					return false;
+				}
+				location.href='delete.idol?num=${dto.num}&pageNum=${pageNum}'
+				return true;
+			});
+		});
+		
+		$(function(){
 			id=localStorage.getItem("key1");
 			id=id.replace("님 환영합니다","");
 			/* alert(id); */
@@ -69,11 +97,11 @@
 			</tr> --%>
 			<tr>
 				<td align="right">
-					<input type="button" class="btn btn-sm btn-success" value="수정" 
-					onclick="location.href='updateform.idol?num=${dto.num}&pageNum=${pageNum}'">
+					<input type="button" class="btn btn-sm btn-success" id="email111" value="수정" 
+					>
 					
-					<input type="button" class="btn btn-sm btn-warning" value="삭제" 
-					onclick="location.href='delete.idol?num=${dto.num}&pageNum=${pageNum}'">
+					<input type="button" class="btn btn-sm btn-warning" id="email112" value="삭제" 
+					>
 					
 					<input type="button" class="btn btn-sm btn-danger" value="목록" 
 					onclick="location.href='bbslist.idol?pageNum=${pageNum}'"> 
