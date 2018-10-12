@@ -13,7 +13,7 @@
 
 	<mvc:annotation-driven />
 	<context:annotation-config></context:annotation-config>
-	<context:component-scan base-package="idol.*"></context:component-scan>
+	<context:component-scan base-package="idol.*,bbs.*"></context:component-scan>
 	<mvc:default-servlet-handler /><!-- 이미지 안깨지게 -->
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
