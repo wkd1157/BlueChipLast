@@ -9,17 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import net.bytebuddy.implementation.bytecode.ByteCodeAppender.Size;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.rosuda.REngine.Rserve.RConnection;
-import org.rosuda.REngine.Rserve.RserveException;
-
-
 
 @Component
 public class InstaPhotoCrawling {
@@ -31,9 +26,9 @@ public class InstaPhotoCrawling {
 	{	
 		Vector<String> getInstaPhoto=new Vector();
 		
-		// String exeURL = InstaPhotoCrawling.class.getClassLoader().getResource("chromedriver.exe").getPath();
-		// System.setProperty("webdriver.chrome.driver", exeURL);
-		System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+		String exeURL = InstaPhotoCrawling.class.getClassLoader().getResource("chromedriver.exe").getPath();
+		System.setProperty("webdriver.chrome.driver", exeURL);
+		// System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 			
 		koreanname = koreanname.replaceAll(" ", "");
 		
@@ -134,8 +129,8 @@ public class InstaPhotoCrawling {
 	{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		
-		// String realPath = request.getSession().getServletContext().getContext("/BlueChipLast").getRealPath("");
-		String realPath = request.getSession().getServletContext().getContext("/").getRealPath("");
+		String realPath = request.getSession().getServletContext().getContext("/BlueChipLast").getRealPath("");
+		// String realPath = request.getSession().getServletContext().getContext("/").getRealPath("");
 		
 		String RootPath = realPath.replace("\\","/");
 		String saveFullPath = RootPath+"wordcloud/";
