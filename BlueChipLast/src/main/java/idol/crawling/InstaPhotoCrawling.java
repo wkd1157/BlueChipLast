@@ -49,25 +49,34 @@ public class InstaPhotoCrawling {
 					koreanname2 += koreanname.substring(i,i+1);
 										
 			}
-			
+		System.out.println("koreanname2: "+koreanname2);
 			
 		url="https://www.instagram.com/explore/tags/"+koreanname2+"/";
 		
 		// 드라이버 실행
 			
 		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--no-sandbox"); // Bypass OS security model
         options.addArguments("headless");
         options.addArguments("window-size=1920x1080");
         options.addArguments("disable-gpu");
-        // options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-        options.addArguments("--no-sandbox"); // Bypass OS security model
+        options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
+        options.addArguments("lang=ko_KR");
         
         WebDriver driver = new ChromeDriver(options);
 		
 		driver.get(url);
 		
-		String cloudText = "";
+		try {
+			Thread.sleep(500);
+			System.out.println("-- 0.5초 시간 주기 --");
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		String cloudText = "";
+				
 		for(int i=1;i<=10;i++)
 		{
 			for(int j=1;j<=3;j++)
@@ -102,23 +111,18 @@ public class InstaPhotoCrawling {
 
 						getInstaPhoto.add(src+"|"+ innertag);
 
-
 					}
-					System.out.println(getInstaPhoto);
+					// System.out.println(getInstaPhoto);
 				}catch(Exception e) {
 					continue;
 				}	
 			}
 		}
+		
+		
+		
+		
 		// 드라이버 종료
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		driver.quit();
 		
 		IdolWordCloud(koreanname, cloudText);
@@ -129,12 +133,17 @@ public class InstaPhotoCrawling {
 	public void IdolWordCloud(String search, String imgComments)
 	{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		
 		String realPath = request.getSession().getServletContext().getContext("/BlueChipLast").getRealPath("");
 		// String realPath = request.getSession().getServletContext().getContext("/").getRealPath("");
+		
 		String RootPath = realPath.replace("\\","/");
 		String saveFullPath = RootPath+"wordcloud/";
+		search = search.replace(" ","");
 		imgComments = imgComments.replace("'","");
 		imgComments = imgComments.trim();
+		if (imgComments == "" )
+			imgComments = "데이터가수집되지않았습니다";
 		System.out.println("imgComments: "+ imgComments);
 		System.out.println("saveFullPath: "+saveFullPath);
 		
@@ -148,7 +157,6 @@ public class InstaPhotoCrawling {
 			connection.eval("useSejongDic");
 			connection.eval("txt<-'"+imgComments+"'");
 			connection.eval("write(unlist(txt),'"+saveFullPath+search+"_comments.txt')");
-			Thread.sleep(500);
 			connection.eval("txt2<-readLines('"+saveFullPath+search+"_comments.txt')");
 			// connection.eval("file.remove('"+saveFullPath+search+"_comments.txt')");
 			connection.eval("place<-sapply(txt2,extractNoun,USE.NAMES = F)");
@@ -159,11 +167,10 @@ public class InstaPhotoCrawling {
 			connection.eval("place<-gsub('\\t','',place)");
 			connection.eval("place<-gsub('[ㄱ-ㅎ]','',place)");
 			connection.eval("place<-gsub('[ㅏ-ㅣ]','',place)");
-			connection.eval("place<-gsub('#',' ',place)");
 			connection.eval("place<-gsub('[─~!@$%^&#*()_+=?<>:]','',place)");
+			connection.eval("place<-gsub('UF','',place)");
 			connection.eval("place<-Filter(function(x){nchar(x)>=2},place)");
 			connection.eval("write(unlist(place),'"+saveFullPath+search+"_temp.txt')");
-			Thread.sleep(1000);
 			connection.eval("rev<-read.table('"+saveFullPath+search+"_temp.txt')");
 			// connection.eval("file.remove('"+saveFullPath+search+"_temp.txt')");
 			connection.eval("nrow(rev)");
@@ -173,7 +180,7 @@ public class InstaPhotoCrawling {
 			connection.eval("mycloud <- wordcloud2(data=wordcount2, minSize=0, shape='circle', size=1, fontFamily='segoe UI', color='random-light')");
 						
 			connection.eval("htmltools::save_html(mycloud, file = '"+saveFullPath+search+".html')");
-			connection.eval("rm(list=ls())");
+			
 			} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

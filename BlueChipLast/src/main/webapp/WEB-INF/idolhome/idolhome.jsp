@@ -15,7 +15,8 @@
 <script type="text/javascript">
 	window.onload = function() {
 		var wordcloudbtn = document.getElementById("wordcloudbtn");
-		var cloudfilename = "${IMDto.koreanname}".replace(" ","");
+		// var cloudfilename = "${IMDto.koreanname}".replace(" ","");
+		var cloudfilename = "${IMDto.koreanname}".replace(/ /g,"");
 		wordcloudbtn.onclick = function() {
 			window.open("wordcloud/"+cloudfilename+".html", "w",
 					"left=300px,top=200px,width=1000px,height=550px");
