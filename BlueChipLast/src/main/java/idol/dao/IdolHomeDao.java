@@ -33,4 +33,16 @@ public class IdolHomeDao extends SqlSessionDaoSupport{
 		return getSqlSession().selectList("idolhome.selectSomeOfIdolYouTube",koreanname);
 	}
 	
+	public void updateYoutubeCount(String korname) {
+		getSqlSession().update("idolhome.updateYoutubeCount",korname);
+	}
+	
+	public void updateNewsCount(String korname) {
+		getSqlSession().update("idolhome.updateNewsCount",korname);
+	}
+	
+	public void updatePhotoCount(String korname) {
+		getSqlSession().update("idolhome.updatePhotoCount",korname);
+	}
+	
 }

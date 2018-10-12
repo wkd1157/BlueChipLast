@@ -40,10 +40,10 @@ public class MainController {
 		IdolLinkDto ILDto = IdolHomeDao.getILDto(koreanname);
 		
 		Vector<String> getDaumNews = news.getDaumNews(koreanname);
-		Vector<String> getInstaPhoto = insta.getInstaPhoto(koreanname);
+		// Vector<String> getInstaPhoto = insta.getInstaPhoto(koreanname);
 		
 		model.addObject("getDaumNews",getDaumNews);
-		model.addObject("getInstaPhoto",getInstaPhoto);
+		// model.addObject("getInstaPhoto",getInstaPhoto);
 		model.addObject("IMDto",IMDto);
 		model.addObject("PPDto",PPDto);
 		model.addObject("IYList",IYList);

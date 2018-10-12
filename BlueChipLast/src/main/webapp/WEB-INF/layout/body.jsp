@@ -82,7 +82,10 @@
 					<br>
 					<p><b>${IYList[a].yttitle}</b></p>
 					
-					<div class="align-center"> <a href="${IYList[a].yturl}" class="button">YouTube</a></div>
+					<div class="align-center">
+						<a href="youtubelink.idol?korname=${IMDto.koreanname}&link=${IYList[a].yturl}" class="button">YouTube</a> 
+						<%-- <a href="${IYList[a].yturl}" class="button">YouTube</a> --%>
+					</div>
 				</article>
 			</c:forEach>
 		</div>
@@ -116,7 +119,12 @@
 			<c:set var="title" value="${getDaumNews[a]}" />
 			<div class="col-4 col-12-medium">
 				<div><b>${title}</b><br><br></div>
-				<blockquote>${getDaumNews[20+a]} <div class="align-right"><a href="${getDaumNews[10+a]}" class="button small">More</a></div></blockquote>		
+				<blockquote>${getDaumNews[20+a]} 
+					<div class="align-right">
+						<a href="newslink.idol?korname=${IMDto.koreanname}&link=${getDaumNews[10+a]}" class="button small">More</a>
+						<%-- <a href="${getDaumNews[10+a]}" class="button small">More</a> --%>
+					</div>
+				</blockquote>		
 				
 			</div>
 			</c:forEach>
@@ -124,7 +132,7 @@
 		
 	</section>
 
-	<section id="photo">
+<%-- 	<section id="photo">
 		<header class="major">
 			<h2>Insta Photo</h2>
 		</header>
@@ -144,8 +152,7 @@
 				</article>
 			</c:forEach>
 		</div>
-	</section>
-
+	</section> --%>
 
 </body>
 </html>

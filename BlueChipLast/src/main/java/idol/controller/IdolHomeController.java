@@ -21,7 +21,7 @@ import idol.dto.ProfilePhotoURLDto;
 public class IdolHomeController {
 	
 	@Autowired
-	IdolHomeDao IdolHomeDao;
+	IdolHomeDao idolHomeDao;
 	
 	@Autowired
 	DaumNewsCrawling news;
@@ -33,10 +33,10 @@ public class IdolHomeController {
 	public ModelAndView IdolHome(@RequestParam String koreanname)
 	{
 		ModelAndView model=new ModelAndView();
-		IdolMainDto IMDto= IdolHomeDao.getIMDto(koreanname);
-		ProfilePhotoURLDto PPDto = IdolHomeDao.getPPDto(koreanname);
-		List<IdolYouTubeDto> IYList = IdolHomeDao.getIYList(koreanname);
-		IdolLinkDto ILDto = IdolHomeDao.getILDto(koreanname);
+		IdolMainDto IMDto= idolHomeDao.getIMDto(koreanname);
+		ProfilePhotoURLDto PPDto = idolHomeDao.getPPDto(koreanname);
+		List<IdolYouTubeDto> IYList = idolHomeDao.getIYList(koreanname);
+		IdolLinkDto ILDto = idolHomeDao.getILDto(koreanname);
 		
 		Vector<String> getDaumNews = news.getDaumNews(koreanname);
 		Vector<String> getInstaPhoto = insta.getInstaPhoto(koreanname);
@@ -50,6 +50,27 @@ public class IdolHomeController {
 		
 		model.setViewName("/1/idolhome/idolhome");
 		return model;
+	}
+	
+	@RequestMapping("/youtubelink.idol")
+	public String YoutubeLink(@RequestParam String korname, @RequestParam String link)
+	{
+		idolHomeDao.updateYoutubeCount(korname);
+		return "redirect:" + link;
+	}
+	
+	@RequestMapping("/newslink.idol")
+	public String NewsLink(@RequestParam String korname, @RequestParam String link)
+	{
+		idolHomeDao.updateNewsCount(korname);
+		return "redirect:" + link;
+	}
+	
+	@RequestMapping("/photolink.idol")
+	public String PhotoLink(@RequestParam String korname, @RequestParam String link)
+	{
+		idolHomeDao.updatePhotoCount(korname);
+		return "redirect:" + link;
 	}
 	
 }

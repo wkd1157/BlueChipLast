@@ -82,7 +82,9 @@
 					<br>
 					<p><b>${IYList[a].yttitle}</b></p>
 					
-					<div class="align-center"> <a href="${IYList[a].yturl}" class="button">YouTube</a></div>
+					<div class="align-center">
+						<a href="youtubelink.idol?korname=${IMDto.koreanname}&link=${IYList[a].yturl}" class="button">YouTube</a>
+					</div>
 				</article>
 			</c:forEach>
 		</div>
@@ -116,8 +118,11 @@
 			<c:set var="title" value="${getDaumNews[a]}" />
 			<div class="col-4 col-12-medium">
 				<div><b>${title}</b><br><br></div>
-				<blockquote>${getDaumNews[20+a]} <div class="align-right"><a href="${getDaumNews[10+a]}" class="button small">More</a></div></blockquote>		
-				
+				<blockquote>${getDaumNews[20+a]} 
+					<div class="align-right">
+						<a href="newslink.idol?korname=${IMDto.koreanname}&link=${getDaumNews[10+a]}" class="button small">More</a>
+					</div>
+				</blockquote>		
 			</div>
 			</c:forEach>
 		</div>
@@ -133,8 +138,8 @@
 				<article>
 					<c:forTokens var="data" items="${str}" delims="|" varStatus="n">
 						<c:if test="${n.count==1}">
-							<a href="${data}" class="image"> <img src="${data}"
-								style="height: 250px;">
+							<a href="photolink.idol?korname=${IMDto.koreanname}&link=${data}" class="image"> 
+								<img src="${data}" style="height: 250px;">
 							</a>
 						</c:if>
 						<c:if test="${n.count==2}">

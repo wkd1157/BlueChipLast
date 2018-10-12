@@ -19,5 +19,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from idolyoutube where koreanname = #{koreanname}
 	</select>
 	
+	<update id = "updateYoutubeCount" parameterType="String">
+		update idolmain set youtube_count=youtube_count+1 where koreanname=#{korname}
+	</update>
+	
+	<update id = "updateNewsCount" parameterType="String">
+		update idolmain set news_count=news_count+1 where koreanname=#{korname}
+	</update>
+	
+	<update id = "updatePhotoCount" parameterType="String">
+		update idolmain set photo_count=photo_count+1 where koreanname=#{korname}
+	</update>
 	
 </mapper>

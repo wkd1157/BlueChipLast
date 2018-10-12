@@ -130,12 +130,13 @@ public class InstaPhotoCrawling {
 	{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		String realPath = request.getSession().getServletContext().getContext("/BlueChipLast").getRealPath("");
+		// String realPath = request.getSession().getServletContext().getContext("/").getRealPath("");
 		String RootPath = realPath.replace("\\","/");
 		String saveFullPath = RootPath+"wordcloud/";
 		imgComments = imgComments.replace("'","");
 		imgComments = imgComments.trim();
-		System.out.println("imgComments :"+ imgComments);
-		System.out.println("saveFullPath :"+saveFullPath);
+		System.out.println("imgComments: "+ imgComments);
+		System.out.println("saveFullPath: "+saveFullPath);
 		
 		RConnection connection = null;
 		try {
@@ -147,6 +148,7 @@ public class InstaPhotoCrawling {
 			connection.eval("useSejongDic");
 			connection.eval("txt<-'"+imgComments+"'");
 			connection.eval("write(unlist(txt),'"+saveFullPath+search+"_comments.txt')");
+			Thread.sleep(500);
 			connection.eval("txt2<-readLines('"+saveFullPath+search+"_comments.txt')");
 			// connection.eval("file.remove('"+saveFullPath+search+"_comments.txt')");
 			connection.eval("place<-sapply(txt2,extractNoun,USE.NAMES = F)");
@@ -158,9 +160,10 @@ public class InstaPhotoCrawling {
 			connection.eval("place<-gsub('[ㄱ-ㅎ]','',place)");
 			connection.eval("place<-gsub('[ㅏ-ㅣ]','',place)");
 			connection.eval("place<-gsub('#',' ',place)");
-			connection.eval("place<-gsub('[~!@$%^&#*()_+=?<>]','',place)");
+			connection.eval("place<-gsub('[─~!@$%^&#*()_+=?<>:]','',place)");
 			connection.eval("place<-Filter(function(x){nchar(x)>=2},place)");
 			connection.eval("write(unlist(place),'"+saveFullPath+search+"_temp.txt')");
+			Thread.sleep(1000);
 			connection.eval("rev<-read.table('"+saveFullPath+search+"_temp.txt')");
 			// connection.eval("file.remove('"+saveFullPath+search+"_temp.txt')");
 			connection.eval("nrow(rev)");
