@@ -27,8 +27,8 @@ public class BBSWriteController {
 		
 		@RequestMapping(value="/write.idol", method=RequestMethod.POST)
 	    public String write(@ModelAttribute BBSDto dto) {
-		/*	System.out.println("writer:"+dto.getWriter());
-			System.out.println("s:"+dto.getSubject());*/
+		System.out.println("writer:"+dto.getWriter());
+		System.out.println("s:"+dto.getSubject());
 			
 			dao.insertBBS(dto);
 		        return "redirect:bbslist.idol";

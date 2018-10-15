@@ -54,7 +54,7 @@
 			<tr>
 			<th style="height:60%">내용</th>
 				<td colspan="3">
-					<textarea name="content" class="form-control"
+					<textarea name="content" class="form-control" maxlength="1000"
 					required="required" style="width:80%; height:80%;" ></textarea>
 				</td>
 			</tr>

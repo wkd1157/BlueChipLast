@@ -28,10 +28,10 @@ function goBack(){
 			</tr>
 			<tr>
 				<td align="center" width="10%">제목 :</td>
-				<td><input type="text" name="subject" value="${dto.subject}"></td>
+				<td><input type="text" name="subject" value="${dto.subject}" maxlength="20"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea cols="50" rows="20" name="content" style="width: 100%;">${dto.content}</textarea>
+				<td colspan="2"><textarea cols="50" rows="20" name="content" style="width: 100%;" maxlength="1000">${dto.content} </textarea>
 				</td>
 			</tr>
 			<tr>
